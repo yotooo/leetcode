@@ -1,8 +1,6 @@
 package normal;
 
-import javax.management.ListenerNotFoundException;
 import java.math.BigInteger;
-import java.util.List;
 
 public class _2 {
     public static class ListNode {
