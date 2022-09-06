@@ -3,25 +3,30 @@ class Solution {
         int count = 0 ;
         count = getNodeCount(head,count);
 
-        ListNode dummy = new ListNode(0, head);
-        ListNode cur = dummy;
-
-        for (int i = 0; i < count - n; i++) {
-            cur = cur.next;
+        ListNode node = new ListNode(0,head);
+        ListNode node1 = node;
+        for (int i = 0; i < count-n; i++) {
+            node1 = node1.next;
         }
-        cur.next = cur.next.next;
-        ListNode ans = dummy.next;
-        return ans;
+        node1.next = node1.next.next;
+        ListNode result  = node.next;
+
+        return result;
     }
 
     public int getNodeCount(ListNode node,int count){
         if (node!=null){
-            System.out.println(count);
-
             count++;
             count = getNodeCount(node.next,count);
         }
         return count;
+    }
+
+    public void sout(ListNode node){
+        if (node!=null){
+            System.out.print(node.val+"--");
+            sout(node.next);
+        }
     }
 
     public static class ListNode {
