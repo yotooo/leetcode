@@ -8,7 +8,7 @@ public class _206 {
      * @Date 2022/9/6 17:02
     **/
 
-    //迭代
+    //迭代---三指针
     public ListNode reverseList(ListNode head) {
         //前指针
         ListNode prev = null;
