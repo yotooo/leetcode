@@ -22,8 +22,6 @@ public class _104 {
 
         _104 v = new _104();
         System.out.println(v.maxDepth(treeNode));
-
-
     }
 
     public static class TreeNode {
