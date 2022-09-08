@@ -1,2 +1,5 @@
 著名算法
 http://c.biancheng.net/algorithm/what-is-algorithm.html
+
+吴师兄学算法 剑指offer
+https://blog.algomooc.com/
