@@ -1,10 +1,5 @@
 package 剑指Offer第2版;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class _39 {
     /**
      * 剑指 Offer 39. 数组中出现次数超过一半的数字
@@ -22,19 +17,45 @@ public class _39 {
      *
      * 1 <= 数组长度 <= 50000
      */
+    /**
+     * @Author yoto
+     * @Description 方法一：利用HashMap记录出现次数
+     * @Date 2022/9/9 9:06
+     **/
+//    public int majorityElement(int[] nums) {
+//        Map<Integer,Integer> map = new HashMap<>();
+//        for (int i = 0; i < nums.length; i++) {
+//            Integer integer = map.get(nums[i]);
+//            if (integer==null){
+//                map.put(nums[i],1);
+//            }else {
+//                map.put(nums[i],integer+1);
+//                if (map.get(nums[i])> nums.length/2){
+//                    return nums[i];
+//                }
+//            }
+//        }
+//        return 0;
+//    }
+
+    /**
+     * @Author yoto
+     * @Description 方法二：摩尔投票算法
+     * @Date 2022/9/9 9:07
+     **/
     public int majorityElement(int[] nums) {
-        Map<Integer,Integer> map = new HashMap<>();
+        int votes = 0;//投票票数
+        int mode = nums[0];//众数
         for (int i = 0; i < nums.length; i++) {
-            Integer integer = map.get(nums[i]);
-            if (integer==null){
-                map.put(nums[i],1);
+            if (nums[i]==mode){
+                votes++;
             }else {
-                map.put(nums[i],integer+1);
-                if (map.get(nums[i])> nums.length/2){
-                    return nums[i];
-                }
+                votes--;
+            }
+            if (votes==0){
+                mode = nums[i+1];
             }
         }
-        return 0;
+        return mode;
     }
 }
