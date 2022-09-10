@@ -1,5 +1,8 @@
 package 剑指Offer第2版;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class _50 {
     /**
      * @Author yoto
@@ -22,31 +25,61 @@ public class _50 {
      * @Date 2022/9/9 11:18
      **/
 
+    /**
+     * 方法一:双指针
+     * @param s
+     * @return
+     */
+//    public char firstUniqChar(String s) {
+//        int slow = 0;
+//        int fast = 0;
+//        int length = s.length();
+//
+//        while (slow != length) {
+//            if (fast==s.length()){
+//                return s.charAt(slow);
+//            }
+//            if (fast==slow){
+//                fast++;
+//                continue;
+//            }
+//            if (s.charAt(slow) == s.charAt(fast)){
+//                slow++;
+//                fast=0;
+//                continue;
+//            }
+//
+//            fast++;
+//        }
+//        return ' ';
+//    }
+
+    /**
+     * 方法二:LinkedHashMap(LinkedHashMap是有序的)
+     * @param s
+     * @return
+     */
     public char firstUniqChar(String s) {
-        int slow = 0;
-        int fast = 1;
-        int length = s.length();
-
-        while (slow < length) {
-            if (fast==slow){
-                fast++;
+        Map<Character,Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            Integer total = map.get(s.charAt(i));
+            if (total==null){
+                map.put(s.charAt(i),1);
+            }else {
+                map.put(s.charAt(i),total+1);
             }
-            if (fast>s.length()){
-                return s.charAt(slow);
+        }
+        for(Map.Entry entry: map.entrySet()){
+            if (entry.getValue().equals(1)){
+                return (Character) entry.getKey();
             }
-            if (s.charAt(fast)==s.charAt(slow)){
-                slow++;
-                fast=0;
-            }
-            fast++;
-
         }
         return ' ';
     }
 
     public static void main(String[] args) {
         _50 v = new _50();
-        char leetcode = v.firstUniqChar("abbaccddeeff");
+        char leetcode = v.firstUniqChar("asdfadsfb");
         System.out.println(leetcode);
     }
 }
