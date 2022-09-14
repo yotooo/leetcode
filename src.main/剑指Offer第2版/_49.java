@@ -2,14 +2,22 @@ package ½£Ö¸OfferµÚ2°æ;
 
 public class _49 {
     public int nthUglyNumber(int n) {
-        int val = 0;
-        int myN = 0;
-        while(myN!=n){
-            if (val==1||val%2==0||val%3==0||val%5==0){
-                myN++;
-            }
-            val++;
+        int a = 0, b = 0, c = 0;
+        int[] dp = new int[n];
+        dp[0] = 1;
+        for(int i = 1; i < n; i++) {
+            int n2 = dp[a] * 2, n3 = dp[b] * 3, n5 = dp[c] * 5;
+            dp[i] = Math.min(Math.min(n2, n3), n5);
+            if(dp[i] == n2) a++;
+            if(dp[i] == n3) b++;
+            if(dp[i] == n5) c++;
         }
-        return val;
+        return dp[n - 1];
+    }
+
+    public static void main(String[] args) {
+        _49 v = new _49();
+        int i = v.nthUglyNumber(15);
+        System.out.println(i);
     }
 }
