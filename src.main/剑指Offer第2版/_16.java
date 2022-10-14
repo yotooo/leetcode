@@ -22,6 +22,21 @@ public class _16 {
      * Ω‚ Õ£∫2-2 = 1/22 = 1/4 = 0.25
      */
 
+    public double myPow1(double x, int n) {
+        if (n<0){
+            x = 1/x;
+            n = -n;
+        }
+        if(n == 0){
+            return 1;
+        }else if (n %2 == 1){
+            return x*myPow1(x,n-1);
+        }else {
+            double temp = myPow1(x,n/2);
+            return temp * temp;
+        }
+    }
+
 //    public double myPow(double x, int n) {
 //        if (x==1){
 //            return 1;
@@ -84,7 +99,9 @@ public class _16 {
     public static void main(String[] args) {
         _16 v = new _16();
         double v1 = v.myPow(2, -2);
+        double v2 = v.myPow1(2, -2);
         //7^10=(7^5)^2=(7^2 * 7^2 * 7)^2
         System.out.println(v1);
+        System.out.println(v2);
     }
 }
