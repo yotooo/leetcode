@@ -1,5 +1,9 @@
 package 剑指Offer第2版;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
 public class _38 {
     /**
      * 输入一个字符串，打印出该字符串中字符的所有排列。
@@ -20,19 +24,31 @@ public class _38 {
      *
      * 1 <= s 的长度 <= 8
      */
+    List<String> res = new LinkedList<>();
+    char[] c;
     public String[] permutation(String s) {
-        int size = numsSize(s.length());
-        String[] nums = new String[size];
-        for (int i = 0; i < s.length(); i++) {
-
-        }
-        return null;
+        c = s.toCharArray();
+        dfs(0);
+        return res.toArray(new String[res.size()]);
     }
-    public int numsSize(int length){
-        if (length==1){
-            return 1;
+    void dfs(int x) {
+        if(x == c.length - 1) {
+            res.add(String.valueOf(c));      // 添加排列方案
+            return;
         }
-        return length*numsSize(length-1);
+        HashSet<Character> set = new HashSet<>();
+        for(int i = x; i < c.length; i++) {
+            if(set.contains(c[i])) continue; // 重复，因此剪枝
+            set.add(c[i]);
+            swap(i, x);                      // 交换，将 c[i] 固定在第 x 位
+            dfs(x + 1);                      // 开启固定第 x + 1 位字符
+            swap(i, x);                      // 恢复交换
+        }
+    }
+    void swap(int a, int b) {
+        char tmp = c[a];
+        c[a] = c[b];
+        c[b] = tmp;
     }
 
     public static void main(String[] args) {

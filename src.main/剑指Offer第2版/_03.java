@@ -1,5 +1,7 @@
 package ½£Ö¸OfferµÚ2°æ;
 
+import java.util.HashSet;
+
 public class _03 {
     /**
      * @Author yoto 
@@ -40,10 +42,21 @@ public class _03 {
         }
         return 0;
     }
+    public int findRepeatNumber1(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            boolean flag = set.add(nums[i]);
+            if (!flag){
+                return nums[i];
+            }
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         int[] ints = {3,4,2,1,1,0};
         _03 v = new _03();
-        v.findRepeatNumber(ints);
+        System.out.println(v.findRepeatNumber1(ints));
     }
 }
