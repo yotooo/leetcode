@@ -1,5 +1,7 @@
 package ½£Ö¸OfferµÚ2°æ;
 
+import java.util.Arrays;
+
 public class _42 {
     /**
      * @Author yoto
@@ -60,17 +62,26 @@ public class _42 {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxSubArray(new int[]{-1}));
-        System.out.println(maxSubArray1(new int[]{-1}));
+        System.out.println(maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
+        System.out.println(maxSubArray1(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
     }
 
 
     public static int maxSubArray1(int[] nums) {
-        int res = nums[0];
-        for(int i = 1; i < nums.length; i++) {
-            nums[i] += Math.max(nums[i - 1], 0);
-            res = Math.max(res, nums[i]);
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        for (int i = 1; i < dp.length; i++) {
+            if (dp[i-1]>0){
+                dp[i] = nums[i]+dp[i-1];
+            }else {
+                dp[i] = nums[i];
+            }
         }
-        return res;
+        Arrays.sort(dp);
+        return dp[dp.length-1];
     }
+
+
+
+
 }
